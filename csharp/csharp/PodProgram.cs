@@ -2,7 +2,7 @@ namespace PodProgram;
 
 class Spravy
 {
-    string sprava1;
+    protected string sprava1;
     string sprava2;
     public string Sprava1
     {
