@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\SPSE\\OPGP\\csharp\\csharp\\csharp.csproj",
-      "projectName": "csharp",
-      "projectPath": "C:\\SPSE\\OPGP\\csharp\\csharp\\csharp.csproj",
+      "projectUniqueName": "C:\\SPSE\\OPGP\\csharp\\SocketCommunication\\SocketCommunication.csproj",
+      "projectName": "SocketCommunication",
+      "projectPath": "C:\\SPSE\\OPGP\\csharp\\SocketCommunication\\SocketCommunication.csproj",
       "packagesPath": "C:\\Users\\micha\\.nuget\\packages\\",
-      "outputPath": "C:\\SPSE\\OPGP\\csharp\\csharp\\obj\\",
+      "outputPath": "C:\\SPSE\\OPGP\\csharp\\SocketCommunication\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
