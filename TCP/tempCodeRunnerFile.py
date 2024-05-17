@@ -1,1 +1,1 @@
-    read_sockets = select.select(socket,[],[],5)[0]
+ name = line.removeprefix(LOGIN_PREFIX)
