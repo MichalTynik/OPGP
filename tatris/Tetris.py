@@ -3,6 +3,7 @@ import pygame
 import os
 
 """
+
     0 - S - zelena
     1 - Z - cervena
     2 - I - tyrkysova
