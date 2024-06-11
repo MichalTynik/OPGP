@@ -1,7 +1,8 @@
 import random
+import json
 import pygame
 import os
-
+#halohalo
 """
     0 - S - zelena
     1 - Z - cervena
@@ -275,7 +276,7 @@ def clear_riadkov(grid, locked):
 # nakresli nasledujuci tvar
 def draw_next_shape(piece, surface):
     font = pygame.font.Font(fontpath, 30)
-    label = font.render('Next shape:', 1, (255, 255, 255))
+    label = font.render('Next shape', 1, (255, 255, 255))
 
     start_x = top_left_x + play_width + 50
     start_y = top_left_y + (play_height / 2 - 100)
@@ -306,7 +307,7 @@ def draw_window(surface, grid, score=0):
 
     # current score
     font = pygame.font.Font(fontpath, 30)
-    label = font.render('Score: ' + str(score), 1, (255, 255, 255))
+    label = font.render('Score ' + str(score), 1, (255, 255, 255))
 
     start_x = top_left_x + play_width + 50
     start_y = top_left_y + (play_height / 2 - 100)
@@ -328,7 +329,7 @@ def draw_window(surface, grid, score=0):
     except FileNotFoundError:
         highscore = "0"
 
-    label = font.render('High Score: ' + highscore, 1, (255, 255, 255))
+    label = font.render('High Score ' + highscore, 1, (255, 255, 255))
 
     start_x = top_left_x - 200
     start_y = top_left_y + 200
@@ -415,7 +416,7 @@ def main():
         pygame.display.update()
 
         if check_lost(locked_positions):
-            draw_text_middle("YOU LOST!", 80, (255, 255, 255), screen)
+            draw_text_middle("YOU LOST", 80, (255, 255, 255), screen)
             pygame.display.update()
             pygame.time.delay(1500)
             prehra_zvuk.play()
@@ -436,7 +437,7 @@ def main_menu():
     run = True
     while run:
         screen.fill((0, 0, 0))
-        draw_text_middle('Press any key to begin.', 60, (255, 255, 255), screen)
+        draw_text_middle('Press any key to begin', 60, (255, 255, 255), screen)
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
