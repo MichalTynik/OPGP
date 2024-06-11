@@ -2,16 +2,6 @@ import random
 import pygame
 import os
 
-"""
-    0 - S - zelená
-    1 - Z - červená
-    2 - I - tyrkysová
-    3 - O - žltá
-    4 - J - modrá
-    5 - L - oranžová
-    6 - T - fialová
-"""
-
 pygame.font.init()
 pygame.mixer.init()
 
@@ -141,8 +131,8 @@ T = [['.....',
       '..0..',
       '.....']]
 
-tvary = [S, Z, I, O, J, L, T]
-farba_tvarov = [(0, 255, 0), (255, 0, 0), (0, 255, 255), (255, 255, 0), (255, 165, 0), (0, 0, 255), (128, 0, 128)]
+shapes = [S, Z, I, O, J, L, T]
+shape_colors = [(0, 255, 0), (255, 0, 0), (0, 255, 255), (255, 255, 0), (255, 165, 0), (0, 0, 255), (128, 0, 128)]
 
 
 class Piece(object):
@@ -150,8 +140,8 @@ class Piece(object):
         self.x = x
         self.y = y
         self.shape = shape
-        self.color = farba_tvarov[tvary.index(shape)]  # nastavenie farby
-        self.rotation = 0  # aká je rotácia tvaru
+        self.color = shape_colors[shapes.index(shape)]  # set color
+        self.rotation = 0  # set rotation
 
 
 def create_grid(locked_pos={}):
@@ -172,8 +162,8 @@ def convert_shape_format(piece):
 
     for i, line in enumerate(shape_format):
         row = list(line)
-        for j, stĺpec in enumerate(row):
-            if stĺpec == '0':
+        for j, column in enumerate(row):
+            if column == '0':
                 positions.append((piece.x + j, piece.y + i))
 
     for i, pos in enumerate(positions):
@@ -190,6 +180,8 @@ clear_zvuk = pygame.mixer.Sound(clear_sound_path)
 pygame.mixer.music.load(bg_music_path)
 pygame.mixer.music.play(-1)
 
+# Nacitanie pozadia
+background = pygame.image.load(background_path).convert()
 
 def valid_space(piece, grid):
     accepted_pos = [[(x, y) for x in range(col) if grid[y][x] == (0, 0, 0)] for y in range(row)]
@@ -213,7 +205,7 @@ def check_lost(positions):
 
 
 def get_shape():
-    return Piece(5, 0, random.choice(tvary))
+    return Piece(5, 0, random.choice(shapes))
 
 
 def draw_text_middle(text, size, color, surface):
@@ -234,7 +226,7 @@ def draw_grid(surface):
                              (top_left_x + j * block_size, top_left_y + play_height))
 
 
-def clear_riadkov(grid, locked):
+def clear_rows(grid, locked):
     increment = 0
     for i in range(len(grid) - 1, -1, -1):
         grid_row = grid[i]
@@ -269,25 +261,22 @@ def draw_next_shape(piece, surface):
 
     for i, line in enumerate(shape_format):
         row = list(line)
-        for j, stĺpec in enumerate(row):
-            if stĺpec == '0':
+        for j, column in enumerate(row):
+            if column == '0':
                 pygame.draw.rect(surface, piece.color,
                                  (start_x + j * block_size, start_y + i * block_size, block_size, block_size), 0)
 
     surface.blit(label, (start_x + 10, start_y - 30))
 
 
-def draw_window(surface, grid, score=0):
-    surface.fill((0, 0, 0))
-    background_image = pygame.image.load(background_path)
-    surface.blit(background_image, (0, 0))
-
-    pygame.font.init()
-    font = pygame.font.Font(fontpath, 60)
-    label = font.render('TATRIS', 1, (255, 255, 255))
+def draw_window(surface, grid, score=0, high_score=0, player_name="", next_piece=None):
+    surface.blit(background, (0, 0))  # Background obrazok
+    font = pygame.font.Font(fontpath, 60)<<<<<<< main
+    label = font.render('Tetris', 1, (255, 255, 255))
 
     surface.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), 30))
 
+    # Current score
     font = pygame.font.Font(fontpath, 30)
     label = font.render('Score ' + str(score), 1, (255, 255, 255))
 
@@ -295,30 +284,32 @@ def draw_window(surface, grid, score=0):
     start_y = top_left_y + (play_height / 2 - 100)
 
     surface.blit(label, (start_x + 20, start_y + 160))
-    for i in range(row):
-        for j in range(col):
-            pygame.draw.rect(surface, grid[i][j],
-                             (top_left_x + j * block_size, top_left_y + i * block_size, block_size, block_size), 0)
-
-    draw_grid(surface)
-    pygame.draw.rect(surface, (255, 0, 0), (top_left_x, top_left_y, play_width, play_height), 5)
-
-    try:
-        with open(filepath, 'r') as f:
-            lines = f.readlines()
-            highscore = lines[0].strip()
-    except FileNotFoundError:
-        highscore = "0"
 
     label = font.render('High Score ' + highscore, 1, (255, 255, 255))
 
-    start_x = top_left_x - 200
     start_y = top_left_y + 200
 
     surface.blit(label, (start_x + 20, start_y + 160))
 
+    # Player name
+    label = font.render('Player: ' + player_name, 1, (255, 255, 255))
+    surface.blit(label, (start_x + 20, start_y + 200))
 
-def main():
+    for i in range(len(grid)):
+        for j in range(len(grid[i])):
+            pygame.draw.rect(surface, grid[i][j], (
+                top_left_x + j * block_size, top_left_y + i * block_size, block_size, block_size), 0)
+
+    draw_grid(surface)
+    pygame.draw.rect(surface, (255, 0, 0), (top_left_x, top_left_y, play_width, play_height), 5)
+
+    if next_piece:
+        draw_next_shape(next_piece, surface)
+
+    pygame.display.update()
+
+
+def main(player_name):
     locked_positions = {}
     grid = create_grid(locked_positions)
 
@@ -328,7 +319,6 @@ def main():
     next_piece = get_shape()
     clock = pygame.time.Clock()
     fall_time = 0
-    level_time = 0
     score = 0
 
     while run:
@@ -336,18 +326,12 @@ def main():
         fall_speed = 0.27
 
         fall_time += clock.get_rawtime()
-        level_time += clock.get_rawtime()
         clock.tick()
-
-        if level_time / 1000 > 5:
-            level_time = 0
-            if fall_speed > 0.12:
-                fall_speed -= 0.005
 
         if fall_time / 1000 >= fall_speed:
             fall_time = 0
             current_piece.y += 1
-            if not valid_space(current_piece, grid) and current_piece.y > 0:
+            if not (valid_space(current_piece, grid)) and current_piece.y > 0:
                 current_piece.y -= 1
                 change_piece = True
 
@@ -389,42 +373,109 @@ def main():
             current_piece = next_piece
             next_piece = get_shape()
             change_piece = False
-            score += clear_riadkov(grid, locked_positions) * 10
+            score += clear_rows(grid, locked_positions) * 10
 
-        draw_window(screen, grid, score)
-        draw_next_shape(next_piece, screen)
-        pygame.display.update()
+        draw_window(screen, grid, score, high_score=read_high_score(), player_name=player_name, next_piece=next_piece)
 
         if check_lost(locked_positions):
+
             draw_text_middle("YOU LOST", 80, (255, 255, 255), screen)
+
             pygame.display.update()
             pygame.time.delay(1500)
-            prehra_zvuk.play()
             run = False
-            try:
-                with open(filepath, 'r') as f:
-                    lines = f.readlines()
-                    highscore = lines[0].strip()
-            except FileNotFoundError:
-                highscore = "0"
+            update_score(score)
 
-            if score > int(highscore):
-                with open(filepath, 'w') as f:
-                    f.write(str(score))
+    pygame.display.quit()
+
+
+def update_score(nscore):
+    score = read_high_score()
+
+    with open(filepath, 'w') as f:
+        if int(score) > nscore:
+            f.write(str(score))
+        else:
+            f.write(str(nscore))
+
+
+def read_high_score():
+    with open(filepath, 'r') as f:
+        lines = f.readlines()
+        high_score = lines[0].strip()
+    return high_score
+
+
+def name_input_screen():
+    run = True
+    player_name = ""
+    font = pygame.font.Font(fontpath, 30)
+    input_box = pygame.Rect(top_left_x, top_left_y + 200, 140, 32)
+    color_inactive = pygame.Color('lightskyblue3')
+    color_active = pygame.Color('dodgerblue2')
+    color = color_inactive
+    active = False
+
+    while run:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
+                pygame.display.quit()
+                quit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if input_box.collidepoint(event.pos):
+                    active = not active
+                else:
+                    active = False
+                color = color_active if active else color_inactive
+            if event.type == pygame.KEYDOWN:
+                if active:
+                    if event.key == pygame.K_RETURN:
+                        run = False
+                    elif event.key == pygame.K_BACKSPACE:
+                        player_name = player_name[:-1]
+                    else:
+                        player_name += event.unicode
+
+        screen.fill((0, 0, 0))
+        draw_text_middle("Enter your name", 60, (255, 255, 255), screen)
+        
+        txt_surface = font.render(player_name, True, color)
+        width = max(200, txt_surface.get_width() + 10)
+        input_box.w = width
+        screen.blit(txt_surface, (input_box.x + 5, input_box.y + 5))
+        pygame.draw.rect(screen, color, input_box, 2)
+
+        button_font = pygame.font.Font(fontpath, 30)
+        ok_button = pygame.Rect(top_left_x, top_left_y + 300, 100, 50)
+        pygame.draw.rect(screen, (0, 255, 0), ok_button)
+        ok_label = button_font.render("OK", True, (0, 0, 0))
+        screen.blit(ok_label, (ok_button.x + 25, ok_button.y + 10))
+
+        pygame.display.flip()
+
+        if pygame.mouse.get_pressed()[0] and ok_button.collidepoint(pygame.mouse.get_pos()):
+            run = False
+
+    return player_name
 
 
 def main_menu():
     run = True
     while run:
         screen.fill((0, 0, 0))
+
         draw_text_middle('Press any key to begin', 60, (255, 255, 255), screen)
+
         pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
             if event.type == pygame.KEYDOWN:
-                main()
-    pygame.quit()
+                player_name = name_input_screen()
+                main(player_name)
+    pygame.display.quit()
+    quit()
 
 
 main_menu()
