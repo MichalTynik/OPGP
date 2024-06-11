@@ -1,9 +1,8 @@
 import random
 import pygame
 import os
-
+#halohalo
 """
-
     0 - S - zelena
     1 - Z - cervena
     2 - I - tyrkysova
