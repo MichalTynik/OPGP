@@ -298,7 +298,7 @@ def draw_window(surface, grid, score=0, high_score=0, player_name="", next_piece
     surface.blit(label, (start_x + 20, start_y + 180))
 
     # Player name
-    label = font.render('Player: ' + player_name, 1, (255, 255, 255))
+    label = font.render('Player ' + player_name, 1, (255, 255, 255))
     surface.blit(label, (start_x + 20, start_y + 200))
 
     for i in range(len(grid)):
