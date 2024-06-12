@@ -1,9 +1,15 @@
 import random
 import pygame
 import os
+import socket
+import serverTatris
 
 pygame.font.init()
 pygame.mixer.init()
+
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+
 
 col = 10  # 10 stĺpcov
 row = 20  # 20 riadkov
@@ -271,7 +277,7 @@ def draw_next_shape(piece, surface):
 
 def draw_window(surface, grid, score=0, high_score=0, player_name="", next_piece=None):
     surface.blit(background, (0, 0))  # Background obrazok
-    font = pygame.font.Font(fontpath, 60)<<<<<<< main
+    font = pygame.font.Font(fontpath, 60)
     label = font.render('Tetris', 1, (255, 255, 255))
 
     surface.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), 30))
@@ -285,11 +291,11 @@ def draw_window(surface, grid, score=0, high_score=0, player_name="", next_piece
 
     surface.blit(label, (start_x + 20, start_y + 160))
 
-    label = font.render('High Score ' + highscore, 1, (255, 255, 255))
+    label = font.render('High Score ' + str(score), 1, (255, 255, 255))
 
     start_y = top_left_y + 200
 
-    surface.blit(label, (start_x + 20, start_y + 160))
+    surface.blit(label, (start_x + 20, start_y + 180))
 
     # Player name
     label = font.render('Player: ' + player_name, 1, (255, 255, 255))
@@ -378,7 +384,11 @@ def main(player_name):
         draw_window(screen, grid, score, high_score=read_high_score(), player_name=player_name, next_piece=next_piece)
 
         if check_lost(locked_positions):
-
+            sock.connect(("127.0.0.1", 20000))
+            sock.send(f"CHAT LOGIN {player_name}\n".encode())
+            sock.send("tajná správa\n".encode())
+            print(sock.recv(1024).decode())
+            sock.close()
             draw_text_middle("YOU LOST", 80, (255, 255, 255), screen)
 
             pygame.display.update()
