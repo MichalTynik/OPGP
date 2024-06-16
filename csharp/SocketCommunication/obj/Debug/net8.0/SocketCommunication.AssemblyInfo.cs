@@ -13,7 +13,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SocketCommunication")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7af65d7f16652905d1f92c4369cc743417ef0acb")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+>>>>>>> c1e19afca6ca25a6aea9c0e290ddef88d3f2b118
 [assembly: System.Reflection.AssemblyProductAttribute("SocketCommunication")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SocketCommunication")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
