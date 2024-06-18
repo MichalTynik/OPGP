@@ -386,7 +386,8 @@ def main(player_name):
         if check_lost(locked_positions):
             sock.connect(("127.0.0.1", 20000))
             sock.send(f"CHAT LOGIN {player_name}\n".encode())
-            sock.send("tajná správa\n".encode())
+            print(score)
+            sock.send(f"{score}\n".encode())
             print(sock.recv(1024).decode())
             sock.close()
             draw_text_middle("YOU LOST", 80, (255, 255, 255), screen)
