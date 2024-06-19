@@ -214,12 +214,11 @@ def get_shape():
     return Piece(5, 0, random.choice(shapes))
 
 
-def draw_text_middle(text, size, color, surface):
+def draw_text_middle(text, size, color, surface, offset_y=0):
     font = pygame.font.Font(fontpath, size)
     label = font.render(text, 1, color)
 
-    surface.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), top_left_y + play_height / 2 - (label.get_height() / 2)))
-
+    surface.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), top_left_y + play_height / 2 - (label.get_height() / 2) + offset_y))
 
 def draw_grid(surface):
     grid_color = (0, 0, 0)
@@ -298,7 +297,7 @@ def draw_window(surface, grid, score=0, high_score=0, player_name="", next_piece
     surface.blit(label, (start_x + 20, start_y + 180))
 
     # Player name
-    label = font.render('Player ' + player_name, 1, (255, 255, 255))
+    label = font.render('Player   ' + player_name, 1, (255, 255, 255))
     surface.blit(label, (start_x + 20, start_y + 200))
 
     for i in range(len(grid)):
@@ -420,7 +419,7 @@ def name_input_screen():
     run = True
     player_name = ""
     font = pygame.font.Font(fontpath, 30)
-    input_box = pygame.Rect(top_left_x, top_left_y + 200, 140, 32)
+    input_box = pygame.Rect(top_left_x, top_left_y + 200, 140, 32)  # Adjusted position for the input box
     color_inactive = pygame.Color('lightskyblue3')
     color_active = pygame.Color('dodgerblue2')
     color = color_inactive
@@ -448,8 +447,9 @@ def name_input_screen():
                         player_name += event.unicode
 
         screen.fill((0, 0, 0))
-        draw_text_middle("Enter your name", 60, (255, 255, 255), screen)
-        
+        # Place "Enter your name" text higher
+        draw_text_middle("Enter your name", 60, (255, 255, 255), screen, offset_y=-150)
+
         txt_surface = font.render(player_name, True, color)
         width = max(200, txt_surface.get_width() + 10)
         input_box.w = width
@@ -457,7 +457,7 @@ def name_input_screen():
         pygame.draw.rect(screen, color, input_box, 2)
 
         button_font = pygame.font.Font(fontpath, 30)
-        ok_button = pygame.Rect(top_left_x, top_left_y + 300, 100, 50)
+        ok_button = pygame.Rect(top_left_x, top_left_y + 300, 100, 50)  # Adjusted position for the button
         pygame.draw.rect(screen, (0, 255, 0), ok_button)
         ok_label = button_font.render("OK", True, (0, 0, 0))
         screen.blit(ok_label, (ok_button.x + 25, ok_button.y + 10))
@@ -468,6 +468,7 @@ def name_input_screen():
             run = False
 
     return player_name
+
 
 
 def main_menu():
