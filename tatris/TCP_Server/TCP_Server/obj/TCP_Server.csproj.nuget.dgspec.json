@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\SPSE\\OPGP\\csharp\\csharp\\csharp.csproj": {}
+    "c:\\SPSE\\OPGP\\tatris\\TCP_Server\\TCP_Server\\TCP_Server.csproj": {}
   },
   "projects": {
-    "C:\\SPSE\\OPGP\\csharp\\csharp\\csharp.csproj": {
+    "c:\\SPSE\\OPGP\\tatris\\TCP_Server\\TCP_Server\\TCP_Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\SPSE\\OPGP\\csharp\\csharp\\csharp.csproj",
-        "projectName": "csharp",
-        "projectPath": "C:\\SPSE\\OPGP\\csharp\\csharp\\csharp.csproj",
+        "projectUniqueName": "c:\\SPSE\\OPGP\\tatris\\TCP_Server\\TCP_Server\\TCP_Server.csproj",
+        "projectName": "TCP_Server",
+        "projectPath": "c:\\SPSE\\OPGP\\tatris\\TCP_Server\\TCP_Server\\TCP_Server.csproj",
         "packagesPath": "C:\\Users\\micha\\.nuget\\packages\\",
-        "outputPath": "C:\\SPSE\\OPGP\\csharp\\csharp\\obj\\",
+        "outputPath": "c:\\SPSE\\OPGP\\tatris\\TCP_Server\\TCP_Server\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
