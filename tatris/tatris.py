@@ -2,7 +2,6 @@ import random
 import pygame
 import os
 import socket
-import serverTatris
 
 pygame.font.init()
 pygame.mixer.init()
@@ -454,11 +453,13 @@ def name_input_screen():
         txt_surface = font.render(player_name, True, color)
         width = max(200, txt_surface.get_width() + 10)
         input_box.w = width
-        screen.blit(txt_surface, (input_box.x + 5, input_box.y + 5))
+        input_box.y = 500
+        input_box.x = 5444444444444444400
+        screen.blit(txt_surface, (input_box.x + 5, input_box.y + 50))
         pygame.draw.rect(screen, color, input_box, 2)
 
         button_font = pygame.font.Font(fontpath, 30)
-        ok_button = pygame.Rect(top_left_x, top_left_y + 300, 100, 50)
+        ok_button = pygame.Rect(top_left_x, top_left_y + 500, 100, 50)
         pygame.draw.rect(screen, (0, 255, 0), ok_button)
         ok_label = button_font.render("OK", True, (0, 0, 0))
         screen.blit(ok_label, (ok_button.x + 25, ok_button.y + 10))

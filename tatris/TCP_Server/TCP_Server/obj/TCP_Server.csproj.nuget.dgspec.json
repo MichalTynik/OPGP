@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\SPSE\\OPGP\\tatris\\TCP_Server\\TCP_Server\\TCP_Server.csproj": {}
+    "C:\\SPSE\\OPGP\\tatris\\TCP_Server\\TCP_Server\\TCP_Server.csproj": {}
   },
   "projects": {
-    "c:\\SPSE\\OPGP\\tatris\\TCP_Server\\TCP_Server\\TCP_Server.csproj": {
+    "C:\\SPSE\\OPGP\\tatris\\TCP_Server\\TCP_Server\\TCP_Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\SPSE\\OPGP\\tatris\\TCP_Server\\TCP_Server\\TCP_Server.csproj",
+        "projectUniqueName": "C:\\SPSE\\OPGP\\tatris\\TCP_Server\\TCP_Server\\TCP_Server.csproj",
         "projectName": "TCP_Server",
-        "projectPath": "c:\\SPSE\\OPGP\\tatris\\TCP_Server\\TCP_Server\\TCP_Server.csproj",
+        "projectPath": "C:\\SPSE\\OPGP\\tatris\\TCP_Server\\TCP_Server\\TCP_Server.csproj",
         "packagesPath": "C:\\Users\\micha\\.nuget\\packages\\",
-        "outputPath": "c:\\SPSE\\OPGP\\tatris\\TCP_Server\\TCP_Server\\obj\\",
+        "outputPath": "C:\\SPSE\\OPGP\\tatris\\TCP_Server\\TCP_Server\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -49,6 +49,20 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "SQLite": {
+              "target": "Package",
+              "version": "[3.13.0, )"
+            },
+            "System.Data.SQLite": {
+              "target": "Package",
+              "version": "[1.0.118, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

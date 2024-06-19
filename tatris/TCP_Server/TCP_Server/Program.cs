@@ -1,7 +1,9 @@
 ﻿using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Text.Json;
+using System.Data.SQLite;
+using System.Data.SqlClient;
+
 
 
 class Start
@@ -13,13 +15,76 @@ class Start
     }
 }
 
-class Hrac{
+class HracInfo
+{
+    public string? Meno { get; set; }
+    public int Skore { get; set; }
+
+}
+
+class Hrac
+{
     string meno;
     int skore;
-    public Hrac(string meno, int skore){
+    private readonly string dbFileName = "user_scores.db";
+    private readonly string connectionString;
+    public Hrac(string meno, int skore)
+    {
         this.meno = meno;
         this.skore = skore;
+        this.connectionString = $"Data Source={dbFileName}";
+
+        VytvorDb();
+        Zapis();
     }
+
+    void Zapis()
+    {
+        using (var connection = new SQLiteConnection(connectionString))
+        {
+            connection.Open();
+            using (var command = new SQLiteCommand(connection))
+            {
+                command.CommandText = "SELECT COUNT(*) FROM HracInfo WHERE meno = @meno";
+                command.Parameters.AddWithValue("@meno", this.meno);
+                long count = (long)command.ExecuteScalar();
+
+                if (count == 0)
+                {
+                    command.CommandText = "INSERT INTO HracInfo(meno, skore) VALUES(@meno, skore)";
+                    command.Parameters.AddWithValue("@meno", meno);
+                    command.Parameters.AddWithValue("@skore", skore);
+                    command.ExecuteNonQuery();
+                }
+                else
+                {
+
+                }
+            }
+        }
+        Console.WriteLine("Player added");
+    }
+
+    void VytvorDb()
+    {
+        if (!File.Exists(dbFileName))
+        {
+            SQLiteConnection.CreateFile(dbFileName);
+            Console.WriteLine("DB vytvorena");
+        }
+        using (var connect = new SQLiteConnection(connectionString))
+        {
+            connect.Open();
+            using (var command = new SQLiteCommand(connect))
+            {
+                command.CommandText = "CREATE TABLE IF NOT EXISTS HracInfo(Id INTEGER PRIMARY KEY AUTOINCREMENT, meno TEXT, skore INT)";
+                command.ExecuteNonQuery();
+                Console.WriteLine("Tabulka vytvorena");
+            }
+        }
+    }
+
+
 }
 
 class Client
@@ -89,13 +154,13 @@ class Client
                         if (name != null)
                         {
                             encBuffer = lines[1];
-                    
+
                             continue;
                         }
                     }
                     Recieve_message(lines[0]);
                     encBuffer = lines[1];
-                    
+
 
                 }
             }
@@ -128,7 +193,7 @@ class Server
         this.serv_socket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, 1);
         this.serv_socket.Bind(new IPEndPoint(IPAddress.Any, 20000));
         this.serv_socket.Listen(1);
-        this.clients = new List<Client>();
+        this.clients = [];
         Console.WriteLine("Server started!");
     }
 
@@ -149,8 +214,8 @@ class Server
     {
         while (true)
         {
-            List<Socket> waitting_sockets = new List<Socket> { serv_socket };
-            List<Socket> read_sockets = new List<Socket>();
+            List<Socket> waitting_sockets = [serv_socket];
+            List<Socket> read_sockets = [];
             Socket client_socket;
 
             foreach (Client client in clients)
@@ -169,11 +234,11 @@ class Server
             if (read_sockets.Contains(serv_socket))
             {
                 client_socket = serv_socket.Accept();
-                Client client = new Client(this, client_socket);
+                Client client = new(this, client_socket);
                 clients.Add(client);
             }
 
-            List<Client> clientsCopy = new List<Client>(clients); // Create a copy of clients list
+            List<Client> clientsCopy = new(clients); // Create a copy of clients list
             foreach (var client in clientsCopy)
             {
                 if (read_sockets.Contains(client.socket))

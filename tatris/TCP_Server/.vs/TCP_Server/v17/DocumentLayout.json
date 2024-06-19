@@ -1,0 +1,45 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\SPSE\\OPGP\\tatris\\TCP_Server\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D704CABB-6D31-473B-BD2B-B43B511498FC}|TCP_Server\\TCP_Server.csproj|c:\\spse\\opgp\\tatris\\tcp_server\\tcp_server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D704CABB-6D31-473B-BD2B-B43B511498FC}|TCP_Server\\TCP_Server.csproj|solutionrelative:tcp_server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\SPSE\\OPGP\\tatris\\TCP_Server\\TCP_Server\\Program.cs",
+              "RelativeDocumentMoniker": "TCP_Server\\Program.cs",
+              "ToolTip": "C:\\SPSE\\OPGP\\tatris\\TCP_Server\\TCP_Server\\Program.cs",
+              "RelativeToolTip": "TCP_Server\\Program.cs",
+              "ViewState": "AQIAAEwAAAAAAAAAAADwvzgAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-19T07:59:53.817Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
