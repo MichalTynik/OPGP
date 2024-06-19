@@ -467,6 +467,7 @@ def name_input_screen():
         if pygame.mouse.get_pressed()[0] and ok_button.collidepoint(pygame.mouse.get_pos()):
             run = False
 
+
     return player_name
 
 
