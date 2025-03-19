@@ -51,7 +51,7 @@ class Hrac
 
                 if (count == 0)
                 {
-                    command.CommandText = "INSERT INTO HracInfo(meno, skore) VALUES(@meno, skore)";
+                    command.CommandText = "INSERT INTO HracInfo(meno, skore) VALUES(@meno, @skore)";
                     command.Parameters.AddWithValue("@meno", meno);
                     command.Parameters.AddWithValue("@skore", skore);
                     command.ExecuteNonQuery();

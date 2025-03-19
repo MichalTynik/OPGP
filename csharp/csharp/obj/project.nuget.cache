@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "TV8hh4KCBpA=",
+  "dgSpecHash": "EeyjWvljdXA=",
   "success": true,
-  "projectFilePath": "C:\\SPSE\\OPGP\\csharp\\csharp\\csharp.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/home/michaltynik/Dokumenty/SPSE/OPGP/csharp/csharp/csharp.csproj",
+  "expectedPackageFiles": [
+    "/home/michaltynik/.nuget/packages/microsoft.netcore.app.ref/8.0.11/microsoft.netcore.app.ref.8.0.11.nupkg.sha512",
+    "/home/michaltynik/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.11/microsoft.aspnetcore.app.ref.8.0.11.nupkg.sha512",
+    "/home/michaltynik/.nuget/packages/microsoft.netcore.app.host.linux-x64/8.0.11/microsoft.netcore.app.host.linux-x64.8.0.11.nupkg.sha512"
+  ],
   "logs": []
 }

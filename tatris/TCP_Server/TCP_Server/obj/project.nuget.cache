@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "p3fxq6mGmZs=",
+  "dgSpecHash": "hxJVQVVaYG4=",
   "success": true,
-  "projectFilePath": "C:\\SPSE\\OPGP\\tatris\\TCP_Server\\TCP_Server\\TCP_Server.csproj",
+  "projectFilePath": "c:\\SPSE\\OPGP\\tatris\\TCP_Server\\TCP_Server\\TCP_Server.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\micha\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\micha\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
@@ -30,5 +30,12 @@
     "C:\\Users\\micha\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512",
     "C:\\Users\\micha\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1900",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json."
+    }
+  ]
 }

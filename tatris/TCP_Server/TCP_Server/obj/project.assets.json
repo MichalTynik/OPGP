@@ -1314,11 +1314,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\SPSE\\OPGP\\tatris\\TCP_Server\\TCP_Server\\TCP_Server.csproj",
+      "projectUniqueName": "c:\\SPSE\\OPGP\\tatris\\TCP_Server\\TCP_Server\\TCP_Server.csproj",
       "projectName": "TCP_Server",
-      "projectPath": "C:\\SPSE\\OPGP\\tatris\\TCP_Server\\TCP_Server\\TCP_Server.csproj",
+      "projectPath": "c:\\SPSE\\OPGP\\tatris\\TCP_Server\\TCP_Server\\TCP_Server.csproj",
       "packagesPath": "C:\\Users\\micha\\.nuget\\packages\\",
-      "outputPath": "C:\\SPSE\\OPGP\\tatris\\TCP_Server\\TCP_Server\\obj\\",
+      "outputPath": "c:\\SPSE\\OPGP\\tatris\\TCP_Server\\TCP_Server\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1389,5 +1389,13 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1900",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json."
+    }
+  ]
 }

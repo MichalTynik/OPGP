@@ -454,7 +454,7 @@ def name_input_screen():
         width = max(200, txt_surface.get_width() + 10)
         input_box.w = width
         input_box.y = 500
-        input_box.x = 5444444444444444400
+        input_box.x = 500
         screen.blit(txt_surface, (input_box.x + 5, input_box.y + 50))
         pygame.draw.rect(screen, color, input_box, 2)
 
